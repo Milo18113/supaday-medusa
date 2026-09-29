@@ -1,3 +1,4 @@
+import { STORE_NAME } from "@lib/store-info"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { listProducts } from "@lib/data/products"
@@ -88,10 +89,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${product.title} | Medusa Store`,
+    title: `${product.title} | ${STORE_NAME}`,
     description: `${product.title}`,
     openGraph: {
-      title: `${product.title} | Medusa Store`,
+      title: `${product.title} | ${STORE_NAME}`,
       description: `${product.title}`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },

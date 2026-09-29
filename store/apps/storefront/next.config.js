@@ -39,6 +39,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.s3.amazonaws.com",
       },
+      // Imágenes de productos artesanales (Wikimedia Commons)
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
       ...(S3_HOSTNAME && S3_PATHNAME
         ? [
             {

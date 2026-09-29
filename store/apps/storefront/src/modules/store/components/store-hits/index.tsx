@@ -54,7 +54,7 @@ const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
         className="py-16 text-center text-ui-fg-error"
         data-testid="products-error"
       >
-        Couldn&apos;t load products
+        No se pudieron cargar los productos
         {error?.message ? `: ${error.message}` : "."}
       </Text>
     )
@@ -69,7 +69,7 @@ const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
           className="py-16 text-center text-ui-fg-subtle"
           data-testid="no-products"
         >
-          No products matched these filters.
+          Ningún producto coincide con estos filtros.
         </Text>
       ) : (
         <ul
@@ -85,9 +85,9 @@ const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
                 >
                   <div data-testid="product-wrapper">
                     <Thumbnail thumbnail={hit.thumbnail} size="full" />
-                    <div className="flex txt-compact-medium mt-4 justify-between">
+                    <div className="flex txt-compact-medium mt-4 justify-between gap-x-3">
                       <Text
-                        className="text-ui-fg-subtle"
+                        className="font-display text-lg leading-tight text-andes-tierra group-hover:text-andes-terracota transition-colors"
                         data-testid="product-title"
                       >
                         {hit.title}

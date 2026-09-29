@@ -1,5 +1,6 @@
 "use client"
 
+import { STORE_NAME } from "@lib/store-info"
 import { Popover, PopoverPanel, Transition } from "@headlessui/react"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { ArrowRightMini, XMark } from "@medusajs/icons"
@@ -17,6 +18,15 @@ const SideMenuItems = {
   Store: "/store",
   Account: "/account",
   Cart: "/cart",
+}
+
+// Displayed labels are translated separately so `data-testid` (derived from
+// the English keys above) stays stable for existing tests.
+const SideMenuLabels: Record<keyof typeof SideMenuItems, string> = {
+  Home: "Inicio",
+  Store: "Tienda",
+  Account: "Cuenta",
+  Cart: "Carrito",
 }
 
 type SideMenuProps = {
@@ -40,7 +50,7 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                   data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
                 >
-                  Menu
+                  Menú
                 </Popover.Button>
               </div>
 
@@ -82,7 +92,7 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
                             >
-                              {name}
+                              {SideMenuLabels[name as keyof typeof SideMenuItems]}
                             </LocalizedClientLink>
                           </li>
                         )
@@ -127,8 +137,8 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Medusa Store. All rights
-                        reserved.
+                        © {new Date().getFullYear()} {STORE_NAME}. Todos los
+                        derechos reservados.
                       </Text>
                     </div>
                   </div>

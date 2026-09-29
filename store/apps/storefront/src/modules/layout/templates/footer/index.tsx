@@ -1,9 +1,10 @@
 import { listCategories } from "@lib/data/categories";
 import { listCollections } from "@lib/data/collections";
+import { CONTACT, STORE_NAME, STORE_TAGLINE } from "@lib/store-info";
+import AndeanBand from "@modules/common/components/andean-band";
 import { Text, clx } from "@modules/common/components/ui";
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import MedusaCTA from "@modules/layout/components/medusa-cta";
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -12,22 +13,24 @@ export default async function Footer() {
   const productCategories = await listCategories();
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
+    <footer className="w-full bg-andes-tierra text-andes-lana/80">
+      <AndeanBand />
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+        <div className="flex flex-col gap-y-10 small:flex-row items-start justify-between py-16 small:py-24">
+          <div className="max-w-xs">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="font-display font-bold text-2xl text-andes-lana hover:text-andes-ocre transition-colors"
             >
-              Medusa Store
+              {STORE_NAME}
             </LocalizedClientLink>
+            <p className="mt-3 txt-small">{STORE_TAGLINE}</p>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
+                <span className="txt-small-plus text-andes-ocre">
+                  Categorías
                 </span>
                 <ul
                   className="grid grid-cols-1 gap-2"
@@ -47,12 +50,12 @@ export default async function Footer() {
 
                     return (
                       <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
+                        className="flex flex-col gap-2 txt-small"
                         key={c.id}
                       >
                         <LocalizedClientLink
                           className={clx(
-                            "hover:text-ui-fg-base",
+                            "hover:text-andes-ocre",
                             children && "txt-small-plus"
                           )}
                           href={`/categories/${c.handle}`}
@@ -66,7 +69,7 @@ export default async function Footer() {
                               children.map((child) => (
                                 <li key={child.id}>
                                   <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
+                                    className="hover:text-andes-ocre"
                                     href={`/categories/${child.handle}`}
                                     data-testid="category-link"
                                   >
@@ -84,21 +87,18 @@ export default async function Footer() {
             )}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
+                <span className="txt-small-plus text-andes-ocre">
+                  Colecciones
                 </span>
                 <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
+                  className={clx("grid grid-cols-1 gap-2 txt-small", {
+                    "grid-cols-2": (collections?.length || 0) > 3,
+                  })}
                 >
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
+                        className="hover:text-andes-ocre"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -109,47 +109,44 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+              <span className="txt-small-plus text-andes-ocre">Contacto</span>
+              <ul className="grid grid-cols-1 gap-y-2 txt-small">
+                <li>{CONTACT.name}</li>
                 <li>
                   <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                    href={`mailto:${CONTACT.email}`}
+                    className="hover:text-andes-ocre break-all"
                   >
-                    GitHub
+                    {CONTACT.email}
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                    href={`tel:${CONTACT.phone}`}
+                    className="hover:text-andes-ocre"
                   >
-                    Documentation
+                    {CONTACT.phone}
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://github.com/medusajs/dtc-starter"
+                    href={`https://wa.me/${CONTACT.whatsapp}`}
                     target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                    rel="noopener noreferrer"
+                    className="hover:text-andes-ocre"
                   >
-                    Source code
+                    WhatsApp
                   </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+        <div className="flex w-full py-8 border-t border-andes-lana/15 justify-between text-andes-lana/60">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            © {new Date().getFullYear()} {STORE_NAME}. Todos los derechos
+            reservados.
           </Text>
-          <MedusaCTA />
         </div>
       </div>
     </footer>

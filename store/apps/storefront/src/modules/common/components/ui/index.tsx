@@ -42,7 +42,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       <Component
         ref={ref}
         className={clsx(
-          "font-semibold",
+          "font-display font-bold text-andes-tierra",
           Component === "h1" && "text-3xl",
           Component === "h2" && "text-2xl",
           Component === "h3" && "text-xl",
@@ -82,11 +82,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={clsx(
-          "inline-flex gap-2 items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-          variant === "primary" && "bg-black text-white hover:bg-gray-800",
+          "inline-flex gap-2 items-center justify-center rounded-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-andes-ocre focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          variant === "primary" &&
+            "bg-andes-terracota text-andes-lana hover:bg-andes-terracota-oscuro",
           variant === "secondary" &&
-            "bg-white text-black border border-gray-200 hover:bg-gray-50",
-          variant === "transparent" && "bg-transparent hover:bg-gray-100",
+            "bg-andes-lana text-andes-tierra border border-andes-tierra/40 hover:bg-andes-lino",
+          variant === "transparent" &&
+            "bg-transparent hover:bg-andes-lino",
           size === "small" && "h-8 px-3 text-sm",
           size === "medium" && "h-10 px-4",
           size === "large" && "h-12 px-6 text-lg",
@@ -94,7 +96,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {isLoading ? "Loading..." : children}
+        {isLoading ? "Cargando..." : children}
       </button>
     )
   }
@@ -135,7 +137,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
           color === "red" && "bg-red-100 text-red-700",
           color === "blue" && "bg-blue-100 text-blue-700",
           color === "orange" && "bg-orange-100 text-orange-700",
-          color === "grey" && "bg-gray-100 text-gray-700",
+          color === "grey" && "bg-andes-ocre/20 text-andes-tierra",
           color === "purple" && "bg-purple-100 text-purple-700",
           className
         )}
@@ -157,7 +159,7 @@ export const IconBadge = forwardRef<HTMLSpanElement, IconBadgeProps>(
       <span
         ref={ref}
         className={clsx(
-          "inline-flex items-center justify-center rounded-full bg-gray-100 p-1",
+          "inline-flex items-center justify-center rounded-full bg-andes-ocre/20 p-1",
           className
         )}
         {...props}

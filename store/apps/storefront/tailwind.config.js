@@ -33,6 +33,17 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        // Paleta artesanal de la sierra ecuatoriana
+        andes: {
+          tierra: "#393424",
+          "tierra-claro": "#5A5340",
+          terracota: "#B5502F",
+          "terracota-oscuro": "#943F24",
+          ocre: "#D4A017",
+          paramo: "#3D4A2E",
+          lana: "#F5EFE6",
+          lino: "#EDE4D6",
+        },
       },
       borderRadius: {
         none: "0px",
@@ -58,7 +69,9 @@ module.exports = {
         "3xl": "2rem",
       },
       fontFamily: {
+        display: ["var(--font-alegreya)", "Georgia", "serif"],
         sans: [
+          "var(--font-alegreya-sans)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
